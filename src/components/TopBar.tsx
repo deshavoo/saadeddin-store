@@ -3,6 +3,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 import {
     FaWhatsapp,
     FaInstagram,
@@ -10,6 +11,7 @@ import {
     FaPhone,
     FaShoppingBag,
     FaArrowLeft,
+    FaUserShield,
 } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 
@@ -37,7 +39,7 @@ const SOCIAL_LINKS = [
         label: "تابعنا على فايسبوك",
     },
     {
-        name: "TikTok",
+        name: "X",
         href: "https://x.com/saadeddinpastry",
         icon: FaXTwitter,
         label: "تابعنا على تويتر",
@@ -47,6 +49,10 @@ const SOCIAL_LINKS = [
 export default function TopBar() {
     const [visible, setVisible] = useState(true);
     const router = useRouter();
+    const { data: session } = useSession();
+
+    // التحقق مما إذا كان المستخدم أدمن (حسب هيكل الـ Session لديك، عادة session.user.role === 'admin')
+    const isAdmin = (session?.user as { role?: string })?.role === "ADMIN";
 
     useEffect(() => {
         let previousScrollY = window.scrollY;
@@ -89,8 +95,8 @@ export default function TopBar() {
             dir="rtl"
             aria-label="شريط التواصل والعروض"
             className={`relative z-40 overflow-hidden bg-[#0b3c2e] text-[#c5a880] transition-[max-height,opacity] duration-300 ease-in-out ${visible
-                    ? "max-h-20 opacity-100"
-                    : "pointer-events-none max-h-0 opacity-0"
+                ? "max-h-20 opacity-100"
+                : "pointer-events-none max-h-0 opacity-0"
                 }`}
         >
             <div
@@ -99,10 +105,13 @@ export default function TopBar() {
             />
 
             <div className="mx-auto grid min-h-11 max-w-7xl grid-cols-[1fr_auto_1fr] items-center gap-2 px-3 sm:gap-4 sm:px-6 lg:px-8">
-                {/* Right Side: Saudi Identity & Contact (Expanded Width for Saudi Identity) */}
-                <div className="flex min-w-0 items-center justify-start gap-3 sm:gap-4 lg:gap-6">
+                {/* Right Side: Saudi Identity, Admin Dashboard Button & Contact */}
+                <div className="flex min-w-0 items-center justify-start gap-2 sm:gap-4 lg:gap-6">
                     <div className="flex shrink-0 items-center gap-2 px-2.5 py-1 rounded-md bg-[#062920]/60 border border-[#c5a880]/20 text-[11px] font-semibold sm:text-xs text-[#c5a880] tracking-wide">
-                        <span className="whitespace-nowrap">صُنِع في السعودية</span>
+                        {/* للأدمن على الموبايل: العلم بس عشان زرار لوحة التحكم ياخد مكانه */}
+                        <span className={`whitespace-nowrap ${isAdmin ? "hidden sm:inline" : ""}`}>
+                            صُنِع في السعودية
+                        </span>
 
                         <div className="relative w-5 h-3.5 sm:w-6 sm:h-4 rounded-xs overflow-hidden shadow-xs flex items-center justify-center shrink-0">
                             <Image
@@ -114,6 +123,19 @@ export default function TopBar() {
                             />
                         </div>
                     </div>
+
+                    {/* زر لوحة التحكم يظهر فقط لو كان المستخدم مسجلاً بصلاحية أدمن (ديسكتوب وموبايل) */}
+                    {isAdmin && (
+                        <Link
+                            href="admin/products"
+                            aria-label="لوحة تحكم المشرفين"
+                            title="لوحة التحكم"
+                            className="inline-flex h-8 min-w-8 shrink-0 items-center justify-center gap-1.5 rounded-md bg-[#c5a880] px-2 text-[11px] font-bold text-[#0b3c2e] shadow-sm transition-all duration-200 hover:bg-white sm:h-auto sm:px-3 sm:py-1 sm:text-xs sm:hover:scale-105"
+                        >
+                            <FaUserShield aria-hidden="true" size={14} />
+                            <span className="hidden whitespace-nowrap sm:inline">لوحة التحكم</span>
+                        </Link>
+                    )}
 
                     <a
                         href={`tel:${CONTACT.phone}`}
