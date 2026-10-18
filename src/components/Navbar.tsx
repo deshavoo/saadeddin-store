@@ -5,9 +5,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useSession, signOut } from "next-auth/react";
-import { Globe, Search, Menu, X, ShoppingBag, User, LogOut, Heart } from "lucide-react";
+import { Globe, Search, Menu, X, ShoppingBag, User, LogOut, Heart, ArrowLeft } from "lucide-react";
 import { useCart } from "@/components/Cart"; // <--- استيراد السلة
-
 const NAV_LINKS = [
     { label: "المنتجات", href: "#products" },
     { label: "المناسبات", href: "/occasions" },
@@ -58,6 +57,7 @@ export default function Navbar() {
                 aria-label="التنقل الرئيسي"
                 className="relative mx-auto flex h-20 w-full max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8"
             >
+                {/* روابط التنقل */}
                 <div className="flex items-center gap-6 lg:gap-8">
                     <button
                         type="button"
@@ -76,9 +76,10 @@ export default function Navbar() {
                                 <Link
                                     href={link.href}
                                     onClick={(e) => scrollToSection(e, link.href)}
-                                    className="relative py-1 text-sm font-bold text-[#0b3c2e] transition-colors duration-200 hover:text-[#c5a880] group"
+                                    className="group relative py-1 text-sm font-bold text-[#0b3c2e] transition-colors duration-200 hover:text-[#c5a880]"
                                 >
                                     {link.label}
+
                                     <span
                                         className="absolute inset-x-0 bottom-0 h-0.5 w-0 bg-[#c5a880] transition-all duration-300 group-hover:w-full"
                                         aria-hidden="true"
@@ -89,6 +90,7 @@ export default function Navbar() {
                     </ul>
                 </div>
 
+                {/* الشعار */}
                 <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
                     <Link
                         href="/"
@@ -106,90 +108,101 @@ export default function Navbar() {
                     </Link>
                 </div>
 
-                {/* الجانب الأيسر: البحث، اللغة، المفضلة، السلة، والحساب */}
+                {/* البحث وأدوات المستخدم */}
                 <div dir="ltr" className="flex items-center gap-1.5 sm:gap-3">
-
-                    {/* نموذج البحث */}
+                    {/* البحث */}
                     <form
                         onSubmit={handleSearchSubmit}
-                        className={`flex items-center rounded-full border border-[#c5a880]/30 bg-white/80 px-3 py-1.5 transition-all duration-300 focus-within:border-[#c5a880] focus-within:bg-white focus-within:shadow-md ${isSearchOpen
-                            ? "w-48 sm:w-64"
-                            : "w-10 sm:w-48 bg-transparent sm:bg-white/80 border-transparent sm:border-[#c5a880]/30"
+                        role="search"
+                        className={`flex h-10 items-center rounded-full border bg-white/80 px-2.5 transition-all duration-300 ease-out focus-within:border-[#c5a880] focus-within:bg-white focus-within:shadow-[0_4px_18px_rgba(11,60,46,0.08)] ${isSearchOpen
+                            ? "w-40 border-[#c5a880]/50 sm:w-64"
+                            : "w-10 border-transparent bg-transparent sm:w-48 sm:border-[#c5a880]/30 sm:bg-white/80"
                             }`}
                     >
                         <button
                             type="button"
                             onClick={() => setIsSearchOpen((prev) => !prev)}
-                            aria-label="تفعيل البحث"
-                            className="shrink-0 text-[#0b3c2e] hover:text-[#c5a880] transition-colors focus:outline-none"
+                            aria-label={isSearchOpen ? "إغلاق البحث" : "فتح البحث"}
+                            aria-expanded={isSearchOpen}
+                            className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-[#0b3c2e] transition-colors hover:bg-[#c5a880]/15 hover:text-[#8f7041] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#c5a880]"
                         >
-                            <Search size={18} strokeWidth={2} />
+                            {isSearchOpen ? (
+                                <X size={18} strokeWidth={2} />
+                            ) : (
+                                <Search size={18} strokeWidth={2} />
+                            )}
                         </button>
+
                         <input
                             type="search"
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
                             placeholder="ابحث عن منتج..."
                             aria-label="البحث عن المنتجات"
-                            className={`ml-2 w-full bg-transparent text-xs sm:text-sm text-[#0b3c2e] outline-none placeholder:text-gray-400 dir-rtl ${isSearchOpen ? "block" : "hidden sm:block"
+                            tabIndex={isSearchOpen ? 0 : undefined}
+                            className={`ml-1 min-w-0 flex-1 bg-transparent text-xs text-[#0b3c2e] outline-none placeholder:text-gray-400 sm:text-sm ${isSearchOpen ? "block" : "hidden sm:block"
                                 }`}
                         />
                     </form>
 
-                    {/* تبديل اللغة */}
+                    {/* تغيير اللغة: مخفي على الموبايل */}
                     <button
                         type="button"
                         aria-label="تغيير اللغة إلى الإنجليزية"
-                        className="hidden sm:flex items-center gap-1.5 rounded-full border border-[#c5a880]/30 px-3 py-1.5 text-xs font-bold text-[#0b3c2e] hover:border-[#c5a880] hover:bg-[#c5a880] hover:text-[#0b3c2e] transition-all duration-200"
+                        className="hidden items-center gap-1.5 rounded-full border border-[#c5a880]/30 px-3 py-1.5 text-xs font-bold text-[#0b3c2e] transition-all duration-200 hover:border-[#c5a880] hover:bg-[#c5a880] hover:text-[#0b3c2e] sm:flex"
                     >
                         <Globe size={16} strokeWidth={2} />
                         <span>EN</span>
                     </button>
 
-                    {/* زر المفضلة */}
+                    {/* المفضلة: مخفية على الموبايل */}
                     <Link
                         href="/profile"
                         aria-label="قائمة المفضلة"
-                        className="relative flex items-center justify-center rounded-full p-2 text-[#0b3c2e] hover:bg-[#c5a880]/20 hover:text-[#c5a880] transition-colors"
                         title="المفضلة"
+                        className="relative hidden items-center justify-center rounded-full p-2 text-[#0b3c2e] transition-colors hover:bg-[#c5a880]/20 hover:text-[#c5a880] sm:flex"
                     >
                         <Heart size={20} strokeWidth={2} />
                     </Link>
 
-                    {/* سلة التسوق - ديناميكية */}
+                    {/* السلة: مخفية على الموبايل */}
                     <Link
                         href="/cart"
                         aria-label={`سلة التسوق تحتوي على ${itemCount} عناصر`}
-                        className="relative flex items-center justify-center rounded-full p-2 text-[#0b3c2e] hover:bg-[#c5a880]/20 hover:text-[#c5a880] transition-colors"
+                        className="relative hidden items-center justify-center rounded-full p-2 text-[#0b3c2e] transition-colors hover:bg-[#c5a880]/20 hover:text-[#c5a880] sm:flex"
                     >
                         <ShoppingBag size={20} strokeWidth={2} />
+
                         {itemCount > 0 && (
                             <span
-                                className="absolute top-1 right-1 flex h-4 w-4 items-center justify-center rounded-full bg-[#c5a880] text-[10px] font-bold text-[#0b3c2e] shadow-sm animate-pulse"
+                                className="absolute right-1 top-1 flex h-4 w-4 items-center justify-center rounded-full bg-[#c5a880] text-[10px] font-bold text-[#0b3c2e] shadow-sm"
                                 aria-hidden="true"
                             >
-                                {itemCount}
+                                {itemCount > 99 ? "99+" : itemCount}
                             </span>
                         )}
                     </Link>
 
-                    {/* زر الحساب ومحالة تسجيل الدخول */}
+                    {/* الحساب وتسجيل الدخول: مخفيان على الموبايل */}
                     {status === "authenticated" && session?.user ? (
-                        <div className="flex items-center gap-2">
+                        <div className="hidden items-center gap-2 sm:flex">
                             <Link
                                 href="/profile"
-                                className="inline-flex items-center gap-2 rounded-full border border-[#c5a880]/40 bg-[#062920] px-3 py-1.5 text-xs font-bold text-[#c5a880] hover:border-[#c5a880] hover:bg-[#c5a880] hover:text-[#0b3c2e] transition-all duration-300 shadow-sm"
+                                className="inline-flex items-center gap-2 rounded-full border border-[#c5a880]/40 bg-[#062920] px-3 py-1.5 text-xs font-bold text-[#c5a880] shadow-sm transition-all duration-300 hover:border-[#c5a880] hover:bg-[#c5a880] hover:text-[#0b3c2e]"
                             >
                                 <User size={18} strokeWidth={2} className="shrink-0" />
+
                                 <span className="hidden sm:inline-block">
                                     {session.user.name?.split(" ")[0] || "حسابي"}
                                 </span>
                             </Link>
+
                             <button
                                 type="button"
                                 onClick={() => signOut({ callbackUrl: "/" })}
                                 title="تسجيل الخروج"
-                                className="flex items-center justify-center p-2 text-[#0b3c2e] hover:text-red-600 transition-colors"
+                                aria-label="تسجيل الخروج"
+                                className="flex items-center justify-center p-2 text-[#0b3c2e] transition-colors hover:text-red-600"
                             >
                                 <LogOut size={18} strokeWidth={2} />
                             </button>
@@ -198,71 +211,186 @@ export default function Navbar() {
                         <Link
                             href="/auth"
                             aria-label="تسجيل الدخول / حسابي"
-                            className="inline-flex items-center gap-2 rounded-full border border-[#c5a880]/40 bg-[#062920] px-3 py-1.5 text-xs font-bold text-[#c5a880] hover:border-[#c5a880] hover:bg-[#c5a880] hover:text-[#0b3c2e] transition-all duration-300 shadow-sm"
+                            className="hidden items-center gap-2 rounded-full border border-[#c5a880]/40 bg-[#062920] px-3 py-1.5 text-xs font-bold text-[#c5a880] shadow-sm transition-all duration-300 hover:border-[#c5a880] hover:bg-[#c5a880] hover:text-[#0b3c2e] sm:inline-flex"
                         >
                             <User size={18} strokeWidth={2} className="shrink-0" />
-                            <span className="hidden sm:inline-block">تسجيل الدخول</span>
+                            <span>تسجيل الدخول</span>
                         </Link>
                     )}
-
                 </div>
             </nav>
 
             {/* قائمة الموبايل */}
-            {isMobileMenuOpen && (
-                <div
-                    id="mobile-menu"
-                    dir="rtl"
-                    className="border-t border-[#c5a880]/20 bg-[#FEF8EB] px-6 py-6 md:hidden shadow-xl animate-in slide-in-from-top duration-300"
-                >
-                    <ul className="flex flex-col gap-4">
-                        {NAV_LINKS.map((link) => (
-                            <li key={link.href}>
+            <div
+                id="mobile-menu"
+                dir="rtl"
+                aria-hidden={!isMobileMenuOpen}
+                inert={!isMobileMenuOpen}
+                className={`absolute inset-x-0 top-full z-50 overflow-hidden border-t border-[#c5a880]/20 bg-[#FEF8EB] shadow-[0_16px_35px_rgba(11,60,46,0.10)] transition-all duration-300 ease-out md:hidden ${isMobileMenuOpen
+                    ? "visible translate-y-0 opacity-100"
+                    : "invisible -translate-y-2 opacity-0 pointer-events-none"
+                    }`}
+            >
+                <div className="max-h-[calc(100dvh-80px)] overflow-y-auto overscroll-contain px-5 py-5 sm:px-7 sm:py-6">
+                    {/* البحث داخل القائمة */}
+                    <form
+                        onSubmit={(event) => {
+                            handleSearchSubmit(event);
+                            setIsMobileMenuOpen(false);
+                        }}
+                        role="search"
+                        className="mb-5 flex min-h-12 items-center gap-3 rounded-2xl border border-[#c5a880]/30 bg-white px-4 shadow-sm transition-all duration-200 focus-within:border-[#c5a880] focus-within:shadow-[0_4px_18px_rgba(11,60,46,0.07)]"
+                    >
+                        <Search
+                            size={19}
+                            className="shrink-0 text-[#a88a5e]"
+                            aria-hidden="true"
+                        />
+
+                        <input
+                            type="search"
+                            value={searchQuery}
+                            onChange={(event) => setSearchQuery(event.target.value)}
+                            placeholder="ابحث عن منتج..."
+                            aria-label="البحث عن المنتجات"
+                            className="w-full bg-transparent py-3 text-sm text-[#0b3c2e] outline-none placeholder:text-gray-400"
+                        />
+
+                        {searchQuery && (
+                            <button
+                                type="button"
+                                onClick={() => setSearchQuery("")}
+                                aria-label="مسح البحث"
+                                className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-gray-400 transition-colors hover:bg-[#c5a880]/15 hover:text-[#0b3c2e]"
+                            >
+                                <X size={16} />
+                            </button>
+                        )}
+                    </form>
+
+                    {/* روابط الموقع */}
+                    <ul className="flex flex-col">
+                        {NAV_LINKS.map((link, index) => (
+                            <li
+                                key={link.href}
+                                className={`border-b border-[#c5a880]/15 ${index === 0 ? "border-t border-[#c5a880]/15" : ""
+                                    }`}
+                            >
                                 <Link
                                     href={link.href}
-                                    onClick={(e) => scrollToSection(e, link.href)}
-                                    className="block text-base font-bold text-[#0b3c2e] hover:text-[#c5a880] transition-colors py-1.5 border-b border-[#c5a880]/10"
+                                    onClick={(event) => {
+                                        scrollToSection(event, link.href);
+                                        setIsMobileMenuOpen(false);
+                                    }}
+                                    className="group flex min-h-13 items-center justify-between gap-4 py-3 text-[15px] font-bold text-[#0b3c2e] transition-colors hover:text-[#8f7041] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#c5a880]"
                                 >
-                                    {link.label}
+                                    <span>{link.label}</span>
+
+                                    <ArrowLeft
+                                        size={17}
+                                        strokeWidth={1.7}
+                                        aria-hidden="true"
+                                        className="shrink-0 text-[#a88a5e] transition-transform duration-200 group-hover:-translate-x-1"
+                                    />
                                 </Link>
                             </li>
                         ))}
                     </ul>
 
-                    <div className="mt-6 pt-4 border-t border-[#c5a880]/20 flex items-center justify-between">
+                    {/* أدوات المستخدم */}
+                    <div className="mt-5 grid grid-cols-2 gap-3">
+                        {/* المفضلة */}
+                        <Link
+                            href="/profile"
+                            onClick={() => setIsMobileMenuOpen(false)}
+                            className="group flex min-h-22 flex-col items-center justify-center gap-2 rounded-2xl border border-[#c5a880]/25 bg-white/70 p-3 text-sm font-semibold text-[#0b3c2e] transition-all duration-200 hover:border-[#c5a880]/60 hover:bg-white hover:shadow-sm"
+                        >
+                            <Heart
+                                size={21}
+                                strokeWidth={1.8}
+                                className="text-[#a88a5e] transition-transform duration-200 group-hover:scale-110"
+                            />
+                            <span>المفضلة</span>
+                        </Link>
+
+                        {/* السلة */}
+                        <Link
+                            href="/cart"
+                            onClick={() => setIsMobileMenuOpen(false)}
+                            className="group flex min-h-22 flex-col items-center justify-center gap-2 rounded-2xl border border-[#c5a880]/25 bg-white/70 p-3 text-sm font-semibold text-[#0b3c2e] transition-all duration-200 hover:border-[#c5a880]/60 hover:bg-white hover:shadow-sm"
+                        >
+                            <span className="relative">
+                                <ShoppingBag
+                                    size={21}
+                                    strokeWidth={1.8}
+                                    className="text-[#a88a5e] transition-transform duration-200 group-hover:scale-110"
+                                />
+
+                                {itemCount > 0 && (
+                                    <span className="absolute -right-2 -top-2 flex h-4 min-w-4 items-center justify-center rounded-full bg-[#c5a880] px-1 text-[9px] font-bold text-[#0b3c2e]">
+                                        {itemCount > 99 ? "99+" : itemCount}
+                                    </span>
+                                )}
+                            </span>
+
+                            <span>سلة التسوق</span>
+                        </Link>
+
+                        {/* اللغة */}
                         <button
                             type="button"
-                            className="flex items-center gap-2 text-sm font-bold text-[#0b3c2e] hover:text-[#c5a880] transition-colors"
+                            className="group flex min-h-22 flex-col items-center justify-center gap-2 rounded-2xl border border-[#c5a880]/25 bg-white/70 p-3 text-sm font-semibold text-[#0b3c2e] transition-all duration-200 hover:border-[#c5a880]/60 hover:bg-white hover:shadow-sm"
                         >
-                            <Globe size={18} />
+                            <Globe
+                                size={21}
+                                strokeWidth={1.8}
+                                className="text-[#a88a5e] transition-transform duration-200 group-hover:scale-110"
+                            />
                             <span>English</span>
                         </button>
 
-                        {status === "authenticated" ? (
-                            <button
-                                type="button"
-                                onClick={() => {
-                                    setIsMobileMenuOpen(false);
-                                    signOut({ callbackUrl: "/" });
-                                }}
-                                className="flex items-center gap-2 text-sm font-bold text-red-600 hover:underline"
-                            >
-                                <LogOut size={18} />
-                                <span>تسجيل الخروج</span>
-                            </button>
-                        ) : (
-                            <Link
-                                href="/auth"
-                                onClick={() => setIsMobileMenuOpen(false)}
-                                className="flex items-center gap-2 text-sm font-bold text-[#c5a880] hover:underline"
-                            >
-                                <User size={18} />
-                                <span>تسجيل الدخول</span>
-                            </Link>
-                        )}
+                        {/* الحساب */}
+                        <Link
+                            href={status === "authenticated" ? "/profile" : "/auth"}
+                            onClick={() => setIsMobileMenuOpen(false)}
+                            className="group flex min-h-22 flex-col items-center justify-center gap-2 rounded-2xl border border-[#c5a880]/25 bg-white/70 p-3 text-sm font-semibold text-[#0b3c2e] transition-all duration-200 hover:border-[#c5a880]/60 hover:bg-white hover:shadow-sm"
+                        >
+                            <User
+                                size={21}
+                                strokeWidth={1.8}
+                                className="text-[#a88a5e] transition-transform duration-200 group-hover:scale-110"
+                            />
+                            <span>
+                                {status === "authenticated" ? "حسابي" : "تسجيل الدخول"}
+                            </span>
+                        </Link>
+                    </div>
+
+                    {/* تسجيل الخروج */}
+                    {status === "authenticated" && (
+                        <button
+                            type="button"
+                            onClick={() => {
+                                setIsMobileMenuOpen(false);
+                                signOut({ callbackUrl: "/" });
+                            }}
+                            className="mt-4 flex min-h-12 w-full items-center justify-center gap-2 rounded-xl border border-red-200/80 px-4 py-3 text-sm font-bold text-red-700 transition-colors hover:bg-red-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-400"
+                        >
+                            <LogOut size={18} strokeWidth={1.8} />
+                            <span>تسجيل الخروج</span>
+                        </button>
+                    )}
+
+                    {/* Footer */}
+                    <div className="mt-5 border-t border-[#c5a880]/15 pt-4 text-center">
+                        <p className="text-[10px] font-medium tracking-[0.22em] text-[#0b3c2e]/45">
+                            SAAD EDDIN · SINCE 1919
+                        </p>
                     </div>
                 </div>
-            )}
+            </div>
         </header>
+
+
     );
 }
