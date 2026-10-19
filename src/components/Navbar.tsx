@@ -10,7 +10,7 @@ import { useCart } from "@/components/Cart";
 
 const NAV_LINKS = [
     { label: "المنتجات", href: "#products" },
-    { label: "المناسبات", href: "/occasions" },
+    { label: "المناسبات", href: "#occasions" },
     { label: "حسب الطلب", href: "/custom-orders" },
     { label: "عن سعد الدين", href: "/about" },
 ] as const;

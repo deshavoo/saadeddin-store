@@ -23,11 +23,6 @@ import {
     useTransform,
     type Variants,
 } from "framer-motion";
-
-/* -------------------------------------------------------------------------- */
-/*  الأنواع                                                                   */
-/* -------------------------------------------------------------------------- */
-
 export type CountryCode = "EG" | "SA";
 export type CountryFilter = "all" | CountryCode;
 export type HoverEffectName = "crescent" | "celebration" | "emblem" | "sparkle";
@@ -42,7 +37,6 @@ export type MotifName =
     | "pyramid";
 
 export interface OccasionImage {
-    /** مسار من مجلد public، أو صورة مستوردة استيرادًا ثابتًا (import). */
     src: string | StaticImageData;
     alt: string;
 }
@@ -52,41 +46,23 @@ export interface Occasion {
     title: string;
     description: string;
     countries: readonly CountryCode[];
-    /** تاريخ بصيغة ISO ‏(YYYY-MM-DD). */
     start: string;
-    /** يُترك فارغًا للمناسبات ذات اليوم الواحد. */
     end?: string;
-    /** التواريخ الهجرية تتغير بيوم بحسب الرؤية الشرعية. */
     isApproximate?: boolean;
     effect: HoverEffectName;
-    /** رسم خطي ذهبي يظهر إن لم تتوفر الصورة أو فشل تحميلها. */
     motif: MotifName;
     image: OccasionImage;
     href: string;
     ctaLabel: string;
 }
-
 export interface OccasionsSectionProps {
     occasions?: readonly Occasion[];
     className?: string;
 }
-
-/* -------------------------------------------------------------------------- */
-/*  الصور                                                                     */
-/*  الصور تُقرأ من: public/images/occasions/<id>.<extension>                   */
-/*  غيّر IMAGE_EXTENSION لو صورك png أو webp أو jpeg.                          */
-/* -------------------------------------------------------------------------- */
-
 const IMAGE_BASE_PATH = "/images/occasions";
 const IMAGE_EXTENSION = "jpg";
-
 const imageFor = (id: string) => `${IMAGE_BASE_PATH}/${id}.${IMAGE_EXTENSION}`;
 const srcKey = (src: OccasionImage["src"]) => (typeof src === "string" ? src : src.src);
-
-/* -------------------------------------------------------------------------- */
-/*  البيانات                                                                  */
-/* -------------------------------------------------------------------------- */
-
 const OCCASIONS: readonly Occasion[] = [
     {
         id: "coptic-christmas",
@@ -240,9 +216,7 @@ const OCCASIONS: readonly Occasion[] = [
     },
 ];
 
-/* -------------------------------------------------------------------------- */
-/*  ستايل البطاقة                                                             */
-/* -------------------------------------------------------------------------- */
+
 
 interface CardStyle {
     surface: string;
@@ -274,12 +248,7 @@ const CARD_STYLE: CardStyle = {
     fallbackMotif: "text-[#0b3c2e]/70",
 };
 
-/* -------------------------------------------------------------------------- */
-/*  التنسيق                                                                   */
-/* -------------------------------------------------------------------------- */
-
 const toUtcDate = (iso: string) => new Date(`${iso}T00:00:00Z`);
-
 const dayMonthFormat = new Intl.DateTimeFormat("ar-EG", {
     day: "numeric",
     month: "long",
@@ -293,9 +262,6 @@ const fullDateFormat = new Intl.DateTimeFormat("ar-EG", {
     timeZone: "UTC",
 });
 
-/* -------------------------------------------------------------------------- */
-/*  الحركة                                                                    */
-/* -------------------------------------------------------------------------- */
 
 const EASE_OUT_EXPO: [number, number, number, number] = [0.22, 1, 0.36, 1];
 const MAX_TILT_DEG = 5;
@@ -315,7 +281,6 @@ const cardVariants: Variants = {
     },
 };
 
-/** ميل ثلاثي الأبعاد ولمعة تتبع المؤشر؛ كل شيء عبر MotionValues بلا إعادة رسم لـ React. */
 function useCardTilt(disabled: boolean) {
     const pointerX = useMotionValue(0);
     const pointerY = useMotionValue(0);
@@ -342,9 +307,7 @@ function useCardTilt(disabled: boolean) {
     return { rotateX, rotateY, glareX, glareY, onPointerMove, reset };
 }
 
-/* -------------------------------------------------------------------------- */
-/*  رسومات خطية للبديل عن الصورة                                               */
-/* -------------------------------------------------------------------------- */
+
 
 const SUN_RAYS = Array.from({ length: 12 }, (_, i) => {
     const angle = (i * Math.PI) / 6;
@@ -454,9 +417,7 @@ function Motif({
     );
 }
 
-/* -------------------------------------------------------------------------- */
-/*  أشكال التأثيرات                                                            */
-/* -------------------------------------------------------------------------- */
+
 
 function Sparkle(props: SVGProps<SVGSVGElement>) {
     return (
@@ -529,9 +490,6 @@ function SaudiEmblem(props: SVGProps<SVGSVGElement>) {
     );
 }
 
-/* -------------------------------------------------------------------------- */
-/*  تأثيرات الـ Hover                                                          */
-/* -------------------------------------------------------------------------- */
 
 function EffectLayer({
     children,
@@ -692,7 +650,7 @@ const EMBLEM_SPARKLES: readonly TwinkleProps[] = [
 
 function EmblemEffect() {
     return (
-        <EffectLayer className="inset-x-4 top-4 aspect-[4/5] overflow-hidden rounded-b-2xl rounded-t-[999px] bg-[radial-gradient(circle_at_center,rgba(6,41,32,0.72),rgba(6,41,32,0.12)_72%)]">
+        <EffectLayer className="inset-x-4 top-4 aspect-4/5 overflow-hidden rounded-b-2xl rounded-t-[999px] bg-[radial-gradient(circle_at_center,rgba(6,41,32,0.72),rgba(6,41,32,0.12)_72%)]">
             <div className="grid h-full w-full place-items-center">
                 <motion.div
                     initial={{ opacity: 0, scale: 0.7 }}
@@ -748,9 +706,7 @@ const EFFECTS: Record<HoverEffectName, ComponentType> = {
     sparkle: SparkleEffect,
 };
 
-/* -------------------------------------------------------------------------- */
-/*  الأعلام (SVG لأن ويندوز لا يعرض إيموجي الأعلام)                            */
-/* -------------------------------------------------------------------------- */
+
 
 function EgyptFlag(props: SVGProps<SVGSVGElement>) {
     return (
@@ -788,9 +744,7 @@ const FILTERS: readonly { value: CountryFilter; label: string }[] = [
     { value: "EG", label: COUNTRIES.EG.label },
 ];
 
-/* -------------------------------------------------------------------------- */
-/*  عناصر صغيرة                                                               */
-/* -------------------------------------------------------------------------- */
+
 
 function CountryBadge({ code, className }: { code: CountryCode; className: string }) {
     const { label, Flag } = COUNTRIES[code];
@@ -798,7 +752,7 @@ function CountryBadge({ code, className }: { code: CountryCode; className: strin
         <span
             className={`inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-xs ${className}`}
         >
-            <Flag className="h-3 w-[18px] rounded-[2px] shadow-[0_0_0_1px_rgba(0,0,0,0.12)]" />
+            <Flag className="h-3 w-4.5 rounded-xs shadow-[0_0_0_1px_rgba(0,0,0,0.12)]" />
             {label}
         </span>
     );
@@ -836,9 +790,6 @@ function DateRange({ start, end }: Pick<Occasion, "start" | "end">) {
     );
 }
 
-/* -------------------------------------------------------------------------- */
-/*  البطاقة                                                                   */
-/* -------------------------------------------------------------------------- */
 
 const IMAGE_SIZES = "(min-width: 1024px) 28vw, (min-width: 640px) 44vw, 90vw";
 
@@ -886,7 +837,7 @@ function OccasionCard({ occasion }: { occasion: Occasion }) {
     return (
         <motion.li
             variants={cardVariants}
-            className="flex w-[84%] max-w-sm shrink-0 snap-start sm:w-auto sm:max-w-none lg:[&:nth-child(3n+2)]:mt-14"
+            className="flex w-[84%] max-w-sm shrink-0 snap-start sm:w-auto sm:max-w-none lg:nth-[3n+2]:mt-14"
         >
             <div
                 className="h-full w-full"
@@ -907,7 +858,7 @@ function OccasionCard({ occasion }: { occasion: Occasion }) {
                     }}
                     className="group relative isolate h-full rounded-3xl"
                 >
-                    {/* ظل متعدد الطبقات: يتغير بالشفافية فقط */}
+
                     <span
                         aria-hidden="true"
                         className="pointer-events-none absolute inset-0 -z-10 rounded-3xl opacity-0 shadow-[0_2px_4px_rgba(6,41,32,0.08),0_16px_28px_-8px_rgba(6,41,32,0.18),0_40px_72px_-20px_rgba(6,41,32,0.34)] transition-opacity duration-500 group-hover:opacity-100 group-focus-within:opacity-100"
@@ -918,11 +869,11 @@ function OccasionCard({ occasion }: { occasion: Occasion }) {
                     >
                         <span
                             aria-hidden="true"
-                            className="pointer-events-none absolute -end-24 -top-24 h-72 w-72 rounded-full bg-[radial-gradient(circle,rgba(255,248,235,0.35),transparent_65%)]"
+                            className="pointer-events-none absolute -inset-e-24 -top-24 h-72 w-72 rounded-full bg-[radial-gradient(circle,rgba(255,248,235,0.35),transparent_65%)]"
                         />
 
                         <div
-                            className={`relative aspect-[4/5] min-h-72 w-full shrink-0 overflow-hidden rounded-b-2xl rounded-t-[999px] ${style.panel}`}
+                            className={`relative aspect-4/5 min-h-72 w-full shrink-0 overflow-hidden rounded-b-2xl rounded-t-[999px] ${style.panel}`}
                         >
                             {imageFailed ? (
                                 <div className="absolute inset-0 grid place-items-center">
@@ -935,7 +886,7 @@ function OccasionCard({ occasion }: { occasion: Occasion }) {
                                     fill
                                     sizes={IMAGE_SIZES}
                                     onError={handleImageError}
-                                    className="object-cover transition-transform duration-[1400ms] ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-110 group-focus-within:scale-110 motion-reduce:transition-none"
+                                    className="object-cover transition-transform duration-1400 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-110 group-focus-within:scale-110 motion-reduce:transition-none"
                                 />
                             )}
                             <span
@@ -992,11 +943,11 @@ function OccasionCard({ occasion }: { occasion: Occasion }) {
                             {isActive && !reduceMotion && <HoverEffect key={effect} />}
                         </AnimatePresence>
 
-                        {/* لمعة تتبع المؤشر: حركة transform فقط */}
+
                         <motion.span
                             aria-hidden="true"
                             style={{ x: tilt.glareX, y: tilt.glareY }}
-                            className="pointer-events-none absolute inset-0 z-[5] bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.18),transparent_55%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100 motion-reduce:hidden"
+                            className="pointer-events-none absolute inset-0 z-5 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.18),transparent_55%)] opacity-0 transition-opacity duration-500 group-hover:opacity-100 motion-reduce:hidden"
                         />
                     </div>
 
@@ -1093,8 +1044,9 @@ export default function SaadeddinOccasionsSection({
             <section
                 dir="rtl"
                 lang="ar"
+                id="occasions"
                 aria-labelledby={headingId}
-                className={`bg-white py-24 text-[#0b3c2e] sm:py-32 ${className}`}
+                className={`scroll-mt-20 bg-[#fef8eb] py-24 text-[#0b3c2e] sm:py-32 ${className}`}
             >
                 <div className="mx-auto max-w-7xl px-6 lg:px-10">
                     <header className="mx-auto flex max-w-2xl flex-col items-center text-center">
@@ -1129,8 +1081,8 @@ export default function SaadeddinOccasionsSection({
                                     aria-pressed={isActive}
                                     onClick={() => selectFilter(value)}
                                     className={`rounded-full border px-5 py-2 text-sm transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#c5a880] ${isActive
-                                            ? "border-[#0b3c2e] bg-[#0b3c2e] text-[#FEF8EB]"
-                                            : "border-[#c5a880]/50 bg-white text-[#0b3c2e]/75 hover:border-[#0b3c2e] hover:text-[#0b3c2e]"
+                                        ? "border-[#0b3c2e] bg-[#0b3c2e] text-[#FEF8EB]"
+                                        : "border-[#c5a880]/50 bg-white text-[#0b3c2e]/75 hover:border-[#0b3c2e] hover:text-[#0b3c2e]"
                                         }`}
                                 >
                                     {label}
@@ -1151,7 +1103,7 @@ export default function SaadeddinOccasionsSection({
                         initial="hidden"
                         whileInView="show"
                         viewport={{ once: true, margin: "-80px" }}
-                        className="-mx-6 mt-12 flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-px-6 px-6 pb-8 pt-3 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:mx-0 sm:mt-16 sm:grid sm:snap-none sm:grid-cols-2 sm:gap-8 sm:overflow-visible sm:px-0 sm:pb-0 sm:pt-0 lg:grid-cols-3 lg:gap-10"
+                        className="-mx-6 mt-12 flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-px-6 px-6 pb-8 pt-3 scrollbar-none [&::-webkit-scrollbar]:hidden sm:mx-0 sm:mt-16 sm:grid sm:snap-none sm:grid-cols-2 sm:gap-8 sm:overflow-visible sm:px-0 sm:pb-0 sm:pt-0 lg:grid-cols-3 lg:gap-10"
                     >
                         {visible.map((occasion) => (
                             <OccasionCard key={occasion.id} occasion={occasion} />
