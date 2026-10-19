@@ -1,7 +1,7 @@
 import FeaturesBar from "@/components/FeaturesBar";
 import HeroSection from "@/components/HeroSection";
 import ProductsSection from "@/components/ProductsSection";
-import OccasionsSection from "@/components/occasions/OccasionsSection";
+import OccasionsSection from "@/components/Occasionssection";
 import { db } from "@/lib/db";
 import { auth } from "@/auth";
 
