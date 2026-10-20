@@ -8,6 +8,7 @@ import AboutSection from "@/components/Aboutsection";
 import OccasionPickerSection from "@/components/Occasionpickersection";
 import CorporateGiftsSection from "@/components/Corporategiftssection";
 import CustomCakeSection from "@/components/Customcakesection";
+import SupportSection from "@/components/Supportsection";
 
 export default async function Home() {
   const session = await auth();
@@ -40,6 +41,7 @@ export default async function Home() {
       <CorporateGiftsSection />
       <CustomCakeSection />
       <AboutSection />
+      <SupportSection />
 
     </>
   );
