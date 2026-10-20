@@ -94,7 +94,7 @@ export default function TopBar() {
         <div
             dir="rtl"
             aria-label="شريط التواصل والعروض"
-            className={`relative z-40 overflow-hidden bg-[#0b3c2e] text-[#c5a880] transition-[max-height,opacity] duration-300 ease-in-out ${visible
+            className={`relative z-40 overflow-hidden bg-[#005430] text-[#c5a880] transition-[max-height,opacity] duration-300 ease-in-out ${visible
                 ? "max-h-20 opacity-100"
                 : "pointer-events-none max-h-0 opacity-0"
                 }`}
@@ -107,7 +107,7 @@ export default function TopBar() {
             <div className="mx-auto grid min-h-11 max-w-7xl grid-cols-[1fr_auto_1fr] items-center gap-2 px-3 sm:gap-4 sm:px-6 lg:px-8">
                 {/* Right Side: Saudi Identity, Admin Dashboard Button & Contact */}
                 <div className="flex min-w-0 items-center justify-start gap-2 sm:gap-4 lg:gap-6">
-                    <div className="flex shrink-0 items-center gap-2 px-2.5 py-1 rounded-md bg-[#062920]/60 border border-[#c5a880]/20 text-[11px] font-semibold sm:text-xs text-[#c5a880] tracking-wide">
+                    <div className="flex shrink-0 items-center gap-2 px-2.5 py-1 rounded-md bg-[#fef8eb]/10 border border-[#c5a880]/20 text-[11px] font-semibold sm:text-xs text-[#c5a880] tracking-wide">
                         {/* للأدمن على الموبايل: العلم بس عشان زرار لوحة التحكم ياخد مكانه */}
                         <span className={`whitespace-nowrap ${isAdmin ? "hidden sm:inline" : ""}`}>
                             صُنِع في السعودية
@@ -130,7 +130,7 @@ export default function TopBar() {
                             href="admin/products"
                             aria-label="لوحة تحكم المشرفين"
                             title="لوحة التحكم"
-                            className="inline-flex h-8 min-w-8 shrink-0 items-center justify-center gap-1.5 rounded-md bg-[#c5a880] px-2 text-[11px] font-bold text-[#0b3c2e] shadow-sm transition-all duration-200 hover:bg-white sm:h-auto sm:px-3 sm:py-1 sm:text-xs sm:hover:scale-105"
+                            className="inline-flex h-8 min-w-8 shrink-0 items-center justify-center gap-1.5 rounded-md bg-[#c5a880] px-2 text-[11px] font-bold text-[#005430] shadow-sm transition-all duration-200 hover:bg-white sm:h-auto sm:px-3 sm:py-1 sm:text-xs sm:hover:scale-105"
                         >
                             <FaUserShield aria-hidden="true" size={14} />
                             <span className="hidden whitespace-nowrap sm:inline">لوحة التحكم</span>
@@ -153,7 +153,7 @@ export default function TopBar() {
                         href="#products"
                         onClick={scrollToProducts}
                         aria-label="اكتشف منتجات حلويات سعد الدين"
-                        className="group inline-flex items-center justify-center gap-1.5 rounded-full border border-[#c5a880]/50 bg-[#c5a880]/10 px-2.5 py-1.5 text-[10px] font-semibold text-[#f3dfb8] transition-all duration-300 hover:border-[#c5a880] hover:bg-[#c5a880] hover:text-[#062920] sm:gap-2 sm:px-4 sm:text-xs"
+                        className="group inline-flex items-center justify-center gap-1.5 rounded-full border border-[#c5a880]/50 bg-[#c5a880]/10 px-2.5 py-1.5 text-[10px] font-semibold text-[#f3dfb8] transition-all duration-300 hover:border-[#c5a880] hover:bg-[#c5a880] hover:text-[#005430] sm:gap-2 sm:px-4 sm:text-xs"
                     >
                         <FaShoppingBag
                             aria-hidden="true"

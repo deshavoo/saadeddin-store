@@ -161,7 +161,7 @@ export default function ProductsSection({
             id="products"
             dir="rtl"
             aria-labelledby="products-heading"
-            className="overflow-hidden bg-[#0b3c2e] py-16 sm:py-20 lg:py-24 text-[#FEF8EB]"
+            className="overflow-hidden bg-[#005430] py-16 sm:py-20 lg:py-24 text-[#FEF8EB]"
         >
             <div className="mx-auto max-w-360 px-4 sm:px-6 lg:px-10">
                 {/* Section Heading */}
@@ -202,7 +202,7 @@ export default function ProductsSection({
                                 onClick={() => setActiveCategory(tab.id)}
                                 aria-pressed={isActive}
                                 className={`shrink-0 rounded-full border px-5 py-2.5 text-sm font-medium transition-colors duration-200 transform-gpu ${isActive
-                                    ? "border-[#c5a880] bg-[#c5a880] text-[#0b3c2e] font-bold shadow-[0_4px_14px_rgba(197,168,128,0.3)]"
+                                    ? "border-[#c5a880] bg-[#c5a880] text-[#005430] font-bold shadow-[0_4px_14px_rgba(197,168,128,0.3)]"
                                     : "border-[#c5a880]/30 bg-transparent text-[#FEF8EB]/80 hover:border-[#c5a880] hover:bg-white/10 hover:text-[#FEF8EB]"
                                     }`}
                             >
@@ -223,7 +223,7 @@ export default function ProductsSection({
                             type="button"
                             onClick={() => scrollSlider("prev")}
                             aria-label="عرض المنتجات السابقة"
-                            className="flex h-10 w-10 items-center justify-center rounded-full border border-[#c5a880]/40 text-[#FEF8EB] transition-colors duration-200 hover:border-[#c5a880] hover:bg-[#c5a880] hover:text-[#0b3c2e] transform-gpu"
+                            className="flex h-10 w-10 items-center justify-center rounded-full border border-[#c5a880]/40 text-[#FEF8EB] transition-colors duration-200 hover:border-[#c5a880] hover:bg-[#c5a880] hover:text-[#005430] transform-gpu"
                         >
                             <svg viewBox="0 0 24 24" fill="none" className="h-5 w-5" aria-hidden="true">
                                 <path d="m14 5-7 7 7 7" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
@@ -234,7 +234,7 @@ export default function ProductsSection({
                             type="button"
                             onClick={() => scrollSlider("next")}
                             aria-label="عرض المنتجات التالية"
-                            className="flex h-10 w-10 items-center justify-center rounded-full border border-[#c5a880]/40 text-[#FEF8EB] transition-colors duration-200 hover:border-[#c5a880] hover:bg-[#c5a880] hover:text-[#0b3c2e] transform-gpu"
+                            className="flex h-10 w-10 items-center justify-center rounded-full border border-[#c5a880]/40 text-[#FEF8EB] transition-colors duration-200 hover:border-[#c5a880] hover:bg-[#c5a880] hover:text-[#005430] transform-gpu"
                         >
                             <svg viewBox="0 0 24 24" fill="none" className="h-5 w-5" aria-hidden="true">
                                 <path d="m10 5 7 7-7 7" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" />
@@ -257,7 +257,7 @@ export default function ProductsSection({
                         return (
                             <article
                                 key={product.id}
-                                className="group w-[78%] shrink-0 snap-start overflow-hidden rounded-2xl border border-[#c5a880]/30 bg-white text-[#0b3c2e] transition-transform duration-300 ease-out hover:-translate-y-1 hover:shadow-[0_14px_35px_rgba(0,0,0,0.2)] sm:w-[calc((100%-1.5rem)/2)] lg:w-[calc((100%-3rem)/3)] xl:w-[calc((100%-4.5rem)/4)] transform-gpu will-change-transform"
+                                className="group w-[78%] shrink-0 snap-start overflow-hidden rounded-2xl border border-[#c5a880]/30 bg-white text-[#005430] transition-transform duration-300 ease-out hover:-translate-y-1 hover:shadow-[0_14px_35px_rgba(0,0,0,0.2)] sm:w-[calc((100%-1.5rem)/2)] lg:w-[calc((100%-3rem)/3)] xl:w-[calc((100%-4.5rem)/4)] transform-gpu will-change-transform"
                             >
                                 <Link
                                     href={`/products/${product.id}`}
@@ -273,7 +273,7 @@ export default function ProductsSection({
                                     />
 
                                     {product.badge && (
-                                        <span className="absolute right-3 top-3 rounded-full border border-[#c5a880]/70 bg-[#FEF8EB]/95 px-3 py-1.5 text-xs font-semibold text-[#0B3C2E] shadow-sm">
+                                        <span className="absolute right-3 top-3 rounded-full border border-[#c5a880]/70 bg-[#FEF8EB]/95 px-3 py-1.5 text-xs font-semibold text-[#005430] shadow-sm">
                                             {product.badge}
                                         </span>
                                     )}
@@ -284,7 +284,7 @@ export default function ProductsSection({
                                         onClick={(e) => toggleWishlist(product.id, e)}
                                         aria-label={isLiked ? "إزالة من المفضلة" : "إضافة إلى المفضلة"}
                                         aria-pressed={isLiked}
-                                        className={`absolute left-3 top-3 z-10 flex h-9 w-9 items-center justify-center rounded-full border border-[#c5a880]/40 bg-[#FEF8EB]/90 shadow-md transition-transform duration-200 hover:scale-110 active:scale-95 transform-gpu ${isLiked ? "text-rose-600 bg-rose-50" : "text-[#0B3C2E] hover:text-rose-600"
+                                        className={`absolute left-3 top-3 z-10 flex h-9 w-9 items-center justify-center rounded-full border border-[#c5a880]/40 bg-[#FEF8EB]/90 shadow-md transition-transform duration-200 hover:scale-110 active:scale-95 transform-gpu ${isLiked ? "text-rose-600 bg-rose-50" : "text-[#005430] hover:text-rose-600"
                                             }`}
                                     >
                                         <Heart
@@ -313,7 +313,7 @@ export default function ProductsSection({
                                     </div>
 
                                     <Link href={`/products/${product.id}`}>
-                                        <h3 className="mb-2 line-clamp-1 text-base font-bold text-[#0b3c2e] transition-colors duration-200 group-hover:text-[#A88746] sm:text-lg">
+                                        <h3 className="mb-2 line-clamp-1 text-base font-bold text-[#005430] transition-colors duration-200 group-hover:text-[#A88746] sm:text-lg">
                                             {product.name}
                                         </h3>
                                     </Link>
@@ -325,7 +325,7 @@ export default function ProductsSection({
                                     <div className="flex items-center justify-between gap-2 border-t border-[#F0E9DC] pt-4">
                                         <div>
                                             <span className="block text-[11px] text-[#968B7A]">السعر</span>
-                                            <p className="mt-1 flex items-baseline gap-2 whitespace-nowrap text-base font-bold text-[#0b3c2e] sm:text-lg">
+                                            <p className="mt-1 flex items-baseline gap-2 whitespace-nowrap text-base font-bold text-[#005430] sm:text-lg">
                                                 <span>
                                                     {formatPrice(product.price)}{" "}
                                                     <span className="text-xs font-medium">ر.س</span>
@@ -368,7 +368,7 @@ export default function ProductsSection({
                 <div className="mt-8 text-center">
                     <Link
                         href={viewAllHref}
-                        className="inline-flex items-center justify-center rounded-full border border-[#c5a880] px-8 py-3 text-sm font-bold text-[#c5a880] transition-colors duration-200 hover:bg-[#c5a880] hover:text-[#0b3c2e] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#c5a880] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b3c2e] transform-gpu"
+                        className="inline-flex items-center justify-center rounded-full border border-[#c5a880] px-8 py-3 text-sm font-bold text-[#c5a880] transition-colors duration-200 hover:bg-[#c5a880] hover:text-[#005430] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#c5a880] focus-visible:ring-offset-2 focus-visible:ring-offset-[#005430] transform-gpu"
                     >
                         عرض جميع المنتجات
                     </Link>
@@ -380,7 +380,7 @@ export default function ProductsSection({
                 {toast && (
                     <p
                         role="status"
-                        className="rounded-xl border border-[#c5a880]/60 bg-[#FEF8EB] px-5 py-3 text-sm font-semibold text-[#0b3c2e] shadow-xl"
+                        className="rounded-xl border border-[#c5a880]/60 bg-[#FEF8EB] px-5 py-3 text-sm font-semibold text-[#005430] shadow-xl"
                     >
                         {toast}
                     </p>

@@ -12,7 +12,7 @@ const NAV_LINKS = [
     { label: "المنتجات", href: "#products" },
     { label: "المناسبات", href: "#occasions" },
     { label: "حسب الطلب", href: "/custom-orders" },
-    { label: "عن سعد الدين", href: "/about" },
+    { label: "عن سعد الدين", href: "#about" },
 ] as const;
 
 export default function Navbar() {
@@ -116,7 +116,7 @@ export default function Navbar() {
                         aria-label={isMobileMenuOpen ? "إغلاق القائمة" : "فتح القائمة"}
                         aria-expanded={isMobileMenuOpen}
                         aria-controls="mobile-menu"
-                        className="inline-flex h-11 w-11 items-center justify-center rounded-xl text-[#0b3c2e] hover:bg-[#c5a880]/10 transition-colors md:hidden focus:outline-none focus:ring-2 focus:ring-[#c5a880]"
+                        className="inline-flex h-11 w-11 items-center justify-center rounded-xl text-[#005430] hover:bg-[#c5a880]/10 transition-colors md:hidden focus:outline-none focus:ring-2 focus:ring-[#c5a880]"
                     >
                         {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
                     </button>
@@ -127,7 +127,7 @@ export default function Navbar() {
                                 <Link
                                     href={link.href}
                                     onClick={(e) => scrollToSection(e, link.href)}
-                                    className="group relative py-1 text-[13px] font-bold text-[#0b3c2e] transition-colors duration-200 hover:text-[#c5a880] lg:text-sm"
+                                    className="group relative py-1 text-[13px] font-bold text-[#005430] transition-colors duration-200 hover:text-[#c5a880] lg:text-sm"
                                 >
                                     {link.label}
                                     <span
@@ -165,7 +165,7 @@ export default function Navbar() {
                     <form
                         onSubmit={handleSearchSubmit}
                         role="search"
-                        className={`hidden h-10 shrink-0 items-center rounded-full border bg-white/80 px-2.5 transition-none duration-300 ease-out focus-within:border-[#c5a880] focus-within:bg-white focus-within:shadow-[0_4px_18px_rgba(11,60,46,0.08)] md:flex ${isSearchOpen
+                        className={`hidden h-10 shrink-0 items-center rounded-full border bg-white/80 px-2.5 transition-none duration-300 ease-out focus-within:border-[#c5a880] focus-within:bg-white focus-within:shadow-[0_4px_18px_rgba(0,84,48,0.08)] md:flex ${isSearchOpen
                             ? "w-40 border-[#c5a880]/50 sm:w-52 lg:w-64"
                             : "w-10 border-transparent bg-transparent sm:w-40 sm:border-[#c5a880]/30 sm:bg-white/80 lg:w-52"
                             }`}
@@ -175,7 +175,7 @@ export default function Navbar() {
                             onClick={() => setIsSearchOpen((prev) => !prev)}
                             aria-label={isSearchOpen ? "إغلاق البحث" : "فتح البحث"}
                             aria-expanded={isSearchOpen}
-                            className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-[#0b3c2e] transition-colors hover:bg-[#c5a880]/15 hover:text-[#8f7041] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#c5a880]"
+                            className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-[#005430] transition-colors hover:bg-[#c5a880]/15 hover:text-[#8f7041] focus:outline-none focus-visible:ring-2 focus-visible:ring-[#c5a880]"
                         >
                             {isSearchOpen ? <X size={18} strokeWidth={2} /> : <Search size={18} strokeWidth={2} />}
                         </button>
@@ -188,7 +188,7 @@ export default function Navbar() {
                             placeholder="ابحث..."
                             aria-label="البحث عن المنتجات"
                             tabIndex={isSearchOpen ? 0 : undefined}
-                            className={`ml-1 min-w-0 flex-1 bg-transparent text-xs text-[#0b3c2e] outline-none placeholder:text-gray-400 lg:text-sm ${isSearchOpen ? "block" : "hidden sm:block"
+                            className={`ml-1 min-w-0 flex-1 bg-transparent text-xs text-[#005430] outline-none placeholder:text-gray-400 lg:text-sm ${isSearchOpen ? "block" : "hidden sm:block"
                                 }`}
                         />
                     </form>
@@ -197,7 +197,7 @@ export default function Navbar() {
                     <button
                         type="button"
                         aria-label="تغيير اللغة إلى الإنجليزية"
-                        className="hidden shrink-0 items-center gap-1.5 rounded-full border border-[#c5a880]/30 px-2.5 py-1.5 text-xs font-bold text-[#0b3c2e] transition-all duration-200 hover:border-[#c5a880] hover:bg-[#c5a880] hover:text-[#0b3c2e] lg:flex"
+                        className="hidden shrink-0 items-center gap-1.5 rounded-full border border-[#c5a880]/30 px-2.5 py-1.5 text-xs font-bold text-[#005430] transition-all duration-200 hover:border-[#c5a880] hover:bg-[#c5a880] hover:text-[#005430] lg:flex"
                     >
                         <Globe size={16} strokeWidth={2} />
                         <span className="hidden xl:inline-block">EN</span>
@@ -207,7 +207,7 @@ export default function Navbar() {
                     <Link
                         href="/profile"
                         aria-label="قائمة المفضلة"
-                        className="relative hidden h-10 w-10 shrink-0 items-center justify-center rounded-full text-[#0b3c2e] transition-colors hover:bg-[#c5a880]/20 hover:text-[#c5a880] md:flex"
+                        className="relative hidden h-10 w-10 shrink-0 items-center justify-center rounded-full text-[#005430] transition-colors hover:bg-[#c5a880]/20 hover:text-[#c5a880] md:flex"
                     >
                         <Heart size={20} strokeWidth={2} />
                     </Link>
@@ -216,11 +216,11 @@ export default function Navbar() {
                     <Link
                         href="/cart"
                         aria-label={`سلة التسوق تحتوي على ${safeItemCount} عناصر`}
-                        className="relative flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-[#0b3c2e] transition-colors hover:bg-[#c5a880]/20 hover:text-[#c5a880] md:h-10 md:w-10"
+                        className="relative flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-[#005430] transition-colors hover:bg-[#c5a880]/20 hover:text-[#c5a880] md:h-10 md:w-10"
                     >
                         <ShoppingBag size={20} strokeWidth={2} />
                         {safeItemCount > 0 && (
-                            <span className="absolute right-0 top-0 flex h-4 min-w-4 items-center justify-center rounded-full bg-[#c5a880] px-1 text-[10px] font-bold text-[#0b3c2e] shadow-sm">
+                            <span className="absolute right-0 top-0 flex h-4 min-w-4 items-center justify-center rounded-full bg-[#c5a880] px-1 text-[10px] font-bold text-[#005430] shadow-sm">
                                 {safeItemCount > 99 ? "99+" : safeItemCount}
                             </span>
                         )}
@@ -236,7 +236,7 @@ export default function Navbar() {
                             <Link
                                 href="/profile"
                                 aria-label="حسابي"
-                                className="inline-flex h-11 min-w-11 shrink-0 items-center justify-center gap-1.5 rounded-full border border-[#c5a880]/40 bg-[#062920] px-2 py-1.5 text-xs font-bold text-[#c5a880] shadow-sm transition-all duration-300 hover:border-[#c5a880] hover:bg-[#c5a880] hover:text-[#0b3c2e] md:h-10 lg:px-3"
+                                className="inline-flex h-11 min-w-11 shrink-0 items-center justify-center gap-1.5 rounded-full border border-[#c5a880]/40 bg-[#062920] px-2 py-1.5 text-xs font-bold text-[#c5a880] shadow-sm transition-all duration-300 hover:border-[#c5a880] hover:bg-[#c5a880] hover:text-[#005430] md:h-10 lg:px-3"
                             >
                                 <User size={18} strokeWidth={2} className="shrink-0" />
                                 {/* اسم المستخدم: بيظهر من sm وطالع، وعلى الموبايل الأيقونة بس */}
@@ -262,7 +262,7 @@ export default function Navbar() {
                             href="/auth"
                             aria-label="تسجيل الدخول"
                             title="تسجيل الدخول"
-                            className="inline-flex h-11 min-w-11 shrink-0 items-center justify-center gap-1.5 rounded-full border border-[#c5a880]/40 bg-[#062920] px-2 py-1.5 text-xs font-bold text-[#c5a880] shadow-sm transition-all duration-300 hover:border-[#c5a880] hover:bg-[#c5a880] hover:text-[#0b3c2e] md:h-10 lg:px-3"
+                            className="inline-flex h-11 min-w-11 shrink-0 items-center justify-center gap-1.5 rounded-full border border-[#c5a880]/40 bg-[#062920] px-2 py-1.5 text-xs font-bold text-[#c5a880] shadow-sm transition-all duration-300 hover:border-[#c5a880] hover:bg-[#c5a880] hover:text-[#005430] md:h-10 lg:px-3"
                         >
                             <User size={18} strokeWidth={2} className="shrink-0" />
                             <span className="hidden sm:inline-block">تسجيل الدخول</span>
@@ -286,7 +286,7 @@ export default function Navbar() {
                 dir="rtl"
                 aria-hidden={!isMobileMenuOpen}
                 inert={!isMobileMenuOpen}
-                className={`absolute inset-x-0 top-full z-50 overflow-hidden border-t border-[#c5a880]/20 bg-[#FEF8EB] shadow-[0_16px_35px_rgba(11,60,46,0.10)] transition-all duration-300 ease-out md:hidden ${isMobileMenuOpen ? "visible translate-y-0 opacity-100" : "invisible -translate-y-2 opacity-0 pointer-events-none"
+                className={`absolute inset-x-0 top-full z-50 overflow-hidden border-t border-[#c5a880]/20 bg-[#FEF8EB] shadow-[0_16px_35px_rgba(0,84,48,0.10)] transition-all duration-300 ease-out md:hidden ${isMobileMenuOpen ? "visible translate-y-0 opacity-100" : "invisible -translate-y-2 opacity-0 pointer-events-none"
                     }`}
             >
                 <div className="max-h-[calc(100dvh-80px)] overflow-y-auto overscroll-contain px-5 py-5">
@@ -303,14 +303,14 @@ export default function Navbar() {
                             onChange={(event) => setSearchQuery(event.target.value)}
                             placeholder="ابحث عن منتج..."
                             aria-label="البحث عن المنتجات"
-                            className="w-full bg-transparent py-3 text-sm text-[#0b3c2e] outline-none placeholder:text-gray-400"
+                            className="w-full bg-transparent py-3 text-sm text-[#005430] outline-none placeholder:text-gray-400"
                         />
                         {searchQuery && (
                             <button
                                 type="button"
                                 onClick={() => setSearchQuery("")}
                                 aria-label="مسح البحث"
-                                className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-gray-400 hover:bg-[#c5a880]/15 hover:text-[#0b3c2e]"
+                                className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-gray-400 hover:bg-[#c5a880]/15 hover:text-[#005430]"
                             >
                                 <X size={16} />
                             </button>
@@ -330,7 +330,7 @@ export default function Navbar() {
                                         scrollToSection(event, link.href);
                                         setIsMobileMenuOpen(false);
                                     }}
-                                    className="group flex min-h-13 items-center justify-between gap-4 py-3 text-[15px] font-bold text-[#0b3c2e] hover:text-[#8f7041]"
+                                    className="group flex min-h-13 items-center justify-between gap-4 py-3 text-[15px] font-bold text-[#005430] hover:text-[#8f7041]"
                                 >
                                     <span>{link.label}</span>
                                     <ArrowLeft size={17} className="shrink-0 text-[#a88a5e] group-hover:-translate-x-1" />
@@ -344,7 +344,7 @@ export default function Navbar() {
                         <Link
                             href="/profile"
                             onClick={() => setIsMobileMenuOpen(false)}
-                            className="group flex min-h-22 flex-col items-center justify-center gap-2 rounded-2xl border border-[#c5a880]/25 bg-white/70 p-3 text-sm font-semibold text-[#0b3c2e] hover:border-[#c5a880]/60 hover:bg-white"
+                            className="group flex min-h-22 flex-col items-center justify-center gap-2 rounded-2xl border border-[#c5a880]/25 bg-white/70 p-3 text-sm font-semibold text-[#005430] hover:border-[#c5a880]/60 hover:bg-white"
                         >
                             <Heart size={21} strokeWidth={1.8} className="text-[#a88a5e]" />
                             <span>المفضلة</span>
@@ -353,12 +353,12 @@ export default function Navbar() {
                         <Link
                             href="/cart"
                             onClick={() => setIsMobileMenuOpen(false)}
-                            className="group flex min-h-22 flex-col items-center justify-center gap-2 rounded-2xl border border-[#c5a880]/25 bg-white/70 p-3 text-sm font-semibold text-[#0b3c2e] hover:border-[#c5a880]/60 hover:bg-white"
+                            className="group flex min-h-22 flex-col items-center justify-center gap-2 rounded-2xl border border-[#c5a880]/25 bg-white/70 p-3 text-sm font-semibold text-[#005430] hover:border-[#c5a880]/60 hover:bg-white"
                         >
                             <span className="relative">
                                 <ShoppingBag size={21} strokeWidth={1.8} className="text-[#a88a5e]" />
                                 {safeItemCount > 0 && (
-                                    <span className="absolute -right-2 -top-2 flex h-4 min-w-4 items-center justify-center rounded-full bg-[#c5a880] px-1 text-[9px] font-bold text-[#0b3c2e]">
+                                    <span className="absolute -right-2 -top-2 flex h-4 min-w-4 items-center justify-center rounded-full bg-[#c5a880] px-1 text-[9px] font-bold text-[#005430]">
                                         {safeItemCount > 99 ? "99+" : safeItemCount}
                                     </span>
                                 )}
@@ -368,7 +368,7 @@ export default function Navbar() {
 
                         <button
                             type="button"
-                            className="group flex min-h-22 flex-col items-center justify-center gap-2 rounded-2xl border border-[#c5a880]/25 bg-white/70 p-3 text-sm font-semibold text-[#0b3c2e] hover:border-[#c5a880]/60 hover:bg-white"
+                            className="group flex min-h-22 flex-col items-center justify-center gap-2 rounded-2xl border border-[#c5a880]/25 bg-white/70 p-3 text-sm font-semibold text-[#005430] hover:border-[#c5a880]/60 hover:bg-white"
                         >
                             <Globe size={21} strokeWidth={1.8} className="text-[#a88a5e]" />
                             <span>English</span>
@@ -377,7 +377,7 @@ export default function Navbar() {
                         <Link
                             href={status === "authenticated" ? "/profile" : "/auth"}
                             onClick={() => setIsMobileMenuOpen(false)}
-                            className="group flex min-h-22 flex-col items-center justify-center gap-2 rounded-2xl border border-[#c5a880]/25 bg-white/70 p-3 text-sm font-semibold text-[#0b3c2e] hover:border-[#c5a880]/60 hover:bg-white"
+                            className="group flex min-h-22 flex-col items-center justify-center gap-2 rounded-2xl border border-[#c5a880]/25 bg-white/70 p-3 text-sm font-semibold text-[#005430] hover:border-[#c5a880]/60 hover:bg-white"
                         >
                             <User size={21} strokeWidth={1.8} className="text-[#a88a5e]" />
                             <span>{status === "authenticated" ? "حسابي" : "تسجيل الدخول"}</span>
@@ -399,7 +399,7 @@ export default function Navbar() {
                     )}
 
                     <div className="mt-5 border-t border-[#c5a880]/15 pt-4 text-center">
-                        <p className="text-[10px] font-medium tracking-[0.22em] text-[#0b3c2e]/45">
+                        <p className="text-[10px] font-medium tracking-[0.22em] text-[#005430]/45">
                             SAAD EDDIN · SINCE 1919
                         </p>
                     </div>

@@ -236,16 +236,16 @@ interface CardStyle {
 const CARD_STYLE: CardStyle = {
     surface: "bg-[linear-gradient(135deg,#E9D9B6_0%,#D6BF92_52%,#BC9C6B_100%)]",
     border: "border-[#a8895c]/55",
-    title: "text-[#0b3c2e]",
-    body: "text-[#0b3c2e]/90",
-    meta: "text-[#0b3c2e]",
-    icon: "text-[#0b3c2e]/70",
-    divider: "border-[#0b3c2e]/20",
-    badge: "border-[#0b3c2e]/20 bg-white/45 text-[#0b3c2e]/90",
-    cta: "border-[#0b3c2e]/55 text-[#0b3c2e] group-hover:bg-[#0b3c2e] group-hover:text-[#FEF8EB] group-focus-within:bg-[#0b3c2e] group-focus-within:text-[#FEF8EB]",
+    title: "text-[#005430]",
+    body: "text-[#005430]/90",
+    meta: "text-[#005430]",
+    icon: "text-[#005430]/70",
+    divider: "border-[#005430]/20",
+    badge: "border-[#005430]/20 bg-white/45 text-[#005430]/90",
+    cta: "border-[#005430]/55 text-[#005430] group-hover:bg-[#005430] group-hover:text-[#FEF8EB] group-focus-within:bg-[#005430] group-focus-within:text-[#FEF8EB]",
     frame: "border-[#FEF8EB]/70",
     panel: "bg-[#C9AB7B]",
-    fallbackMotif: "text-[#0b3c2e]/70",
+    fallbackMotif: "text-[#005430]/70",
 };
 
 const toUtcDate = (iso: string) => new Date(`${iso}T00:00:00Z`);
@@ -518,7 +518,7 @@ interface TwinkleProps {
     duration: number;
 }
 
-const EFFECT_TONES = ["text-[#FEF8EB]", "text-[#0b3c2e]"] as const;
+const EFFECT_TONES = ["text-[#FEF8EB]", "text-[#005430]"] as const;
 const toneAt = (index: number) => EFFECT_TONES[index % EFFECT_TONES.length];
 
 function Twinkle({ className, delay, duration }: TwinkleProps) {
@@ -555,7 +555,7 @@ function CrescentEffect() {
                     y: { duration: 4.2, repeat: Infinity, ease: "easeInOut" },
                 }}
             >
-                <CrescentShape className="h-full w-full text-[#FEF8EB] drop-shadow-[0_0_10px_rgba(11,60,46,0.35)]" />
+                <CrescentShape className="h-full w-full text-[#FEF8EB] drop-shadow-[0_0_10px_rgba(0,84,48,0.35)]" />
             </motion.span>
             {STAR_FIELD.map((star, index) => (
                 <Twinkle
@@ -577,7 +577,7 @@ interface BalloonConfig {
 }
 
 const BALLOONS: readonly BalloonConfig[] = [
-    { position: "left-[6%]", fill: "#0b3c2e", size: "h-14 w-10", delay: 0, duration: 6.5 },
+    { position: "left-[6%]", fill: "#005430", size: "h-14 w-10", delay: 0, duration: 6.5 },
     { position: "left-[30%]", fill: "#FEF8EB", size: "h-12 w-9", delay: 1.4, duration: 7.2 },
     { position: "right-[28%]", fill: "#14513f", size: "h-16 w-11", delay: 0.7, duration: 6.8 },
     { position: "right-[7%]", fill: "#8f7141", size: "h-12 w-9", delay: 2.1, duration: 7.6 },
@@ -591,15 +591,15 @@ interface RibbonConfig {
 }
 
 const RIBBONS: readonly RibbonConfig[] = [
-    { position: "left-[8%]", color: "bg-[#0b3c2e]", delay: 0, duration: 4.6 },
+    { position: "left-[8%]", color: "bg-[#005430]", delay: 0, duration: 4.6 },
     { position: "left-[18%]", color: "bg-[#FEF8EB]", delay: 1.2, duration: 5.2 },
     { position: "left-[29%]", color: "bg-[#8f7141]", delay: 0.5, duration: 4.9 },
     { position: "left-[41%]", color: "bg-[#14513f]", delay: 2, duration: 5.4 },
-    { position: "left-[52%]", color: "bg-[#0b3c2e]", delay: 0.9, duration: 4.4 },
+    { position: "left-[52%]", color: "bg-[#005430]", delay: 0.9, duration: 4.4 },
     { position: "left-[63%]", color: "bg-[#FEF8EB]", delay: 1.7, duration: 5.1 },
     { position: "left-[73%]", color: "bg-[#8f7141]", delay: 0.2, duration: 4.8 },
     { position: "left-[83%]", color: "bg-[#14513f]", delay: 1.4, duration: 5.3 },
-    { position: "left-[92%]", color: "bg-[#0b3c2e]", delay: 2.4, duration: 4.7 },
+    { position: "left-[92%]", color: "bg-[#005430]", delay: 2.4, duration: 4.7 },
 ];
 
 function CelebrationEffect() {
@@ -1046,7 +1046,7 @@ export default function SaadeddinOccasionsSection({
                 lang="ar"
                 id="occasions"
                 aria-labelledby={headingId}
-                className={`scroll-mt-20 bg-[#fef8eb] py-24 text-[#0b3c2e] sm:py-32 ${className}`}
+                className={`scroll-mt-20 bg-[#fef8eb] py-24 text-[#005430] sm:py-32 ${className}`}
             >
                 <div className="mx-auto max-w-7xl px-6 lg:px-10">
                     <header className="mx-auto flex max-w-2xl flex-col items-center text-center">
@@ -1061,7 +1061,7 @@ export default function SaadeddinOccasionsSection({
                             <span className="h-1.5 w-1.5 rotate-45 border border-current" />
                             <span className="h-px w-16 bg-[linear-gradient(to_right,#c5a880,transparent)]" />
                         </div>
-                        <p className="mt-8 max-w-[52ch] text-base leading-8 text-[#0b3c2e]/70">
+                        <p className="mt-8 max-w-[52ch] text-base leading-8 text-[#005430]/70">
                             من رمضان إلى الأعياد والأيام الوطنية، نُعدّ لكل مناسبة تشكيلةً تُقدَّم
                             بعناية وتُذكر طويلاً.
                         </p>
@@ -1081,8 +1081,8 @@ export default function SaadeddinOccasionsSection({
                                     aria-pressed={isActive}
                                     onClick={() => selectFilter(value)}
                                     className={`rounded-full border px-5 py-2 text-sm transition-colors duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#c5a880] ${isActive
-                                        ? "border-[#0b3c2e] bg-[#0b3c2e] text-[#FEF8EB]"
-                                        : "border-[#c5a880]/50 bg-white text-[#0b3c2e]/75 hover:border-[#0b3c2e] hover:text-[#0b3c2e]"
+                                        ? "border-[#005430] bg-[#005430] text-[#FEF8EB]"
+                                        : "border-[#c5a880]/50 bg-white text-[#005430]/75 hover:border-[#005430] hover:text-[#005430]"
                                         }`}
                                 >
                                     {label}
@@ -1126,14 +1126,14 @@ export default function SaadeddinOccasionsSection({
                             >
                                 <span
                                     aria-hidden="true"
-                                    className={`block h-2 rounded-full transition-[width,background-color] duration-300 ${index === activeIndex ? "w-6 bg-[#0b3c2e]" : "w-2 bg-[#c5a880]/70"
+                                    className={`block h-2 rounded-full transition-[width,background-color] duration-300 ${index === activeIndex ? "w-6 bg-[#005430]" : "w-2 bg-[#c5a880]/70"
                                         }`}
                                 />
                             </button>
                         ))}
                     </div>
 
-                    <p className="mt-16 text-center text-xs leading-6 text-[#0b3c2e]/55">
+                    <p className="mt-16 text-center text-xs leading-6 text-[#005430]/55">
                         تواريخ الأعياد والشهور الهجرية تقريبية، وقد تختلف بيوم بحسب الرؤية الشرعية.
                     </p>
                 </div>

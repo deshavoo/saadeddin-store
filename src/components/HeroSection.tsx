@@ -210,12 +210,12 @@ export default function HeroSection() {
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
             dir="ltr"
-            className=" group/hero relative w-full overflow-hidden bg-[#0b3c2e] font-['Cairo']"
+            className=" group/hero relative w-full overflow-hidden bg-[#005430] font-['Cairo']"
         >
-            <div className="relative flex min-h-120 w-full items-center overflow-hidden bg-[#0b3c2e] sm:min-h-135 lg:min-h-155">
+            <div className="relative flex min-h-120 w-full items-center overflow-hidden bg-[#005430] sm:min-h-135 lg:min-h-155">
 
                 <div
-                    className="absolute inset-0 overflow-hidden bg-[#0b3c2e]"
+                    className="absolute inset-0 overflow-hidden bg-[#005430]"
                     aria-hidden="true"
                 >
                     {HERO_SLIDES.map((item, index) => {
@@ -253,7 +253,7 @@ export default function HeroSection() {
                         );
                     })}
 
-                    <div className="pointer-events-none absolute inset-0 z-2 bg-[#062920]/25" />
+                    <div className="pointer-events-none absolute inset-0 z-2 bg-[#005430]/25" />
 
                     <div className="pointer-events-none absolute inset-x-0 bottom-0 z-3 h-px bg-linear-to-l from-transparent via-[#C5A880]/50 to-transparent" />
                 </div>
@@ -292,7 +292,7 @@ export default function HeroSection() {
                         <div className="pt-2">
                             <Link
                                 href={currentSlide.buttonLink}
-                                className="group/button inline-flex items-center justify-center gap-3 rounded-full border border-[#C5A880]/60 bg-[#082B21] px-8 py-3.5 text-sm font-bold text-white shadow-[0_5px_20px_rgba(197,168,128,0.2)] transition-all duration-300 hover:border-[#C5A880] hover:bg-[#0B3C2E] hover:shadow-[0_5px_25px_rgba(197,168,128,0.4)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C5A880] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0b3c2e] sm:text-base"
+                                className="group/button inline-flex items-center justify-center gap-3 rounded-full border border-[#C5A880]/60 bg-[#005430] px-8 py-3.5 text-sm font-bold text-white shadow-[0_5px_20px_rgba(197,168,128,0.2)] transition-all duration-300 hover:border-[#C5A880] hover:bg-[#005430] hover:shadow-[0_5px_25px_rgba(197,168,128,0.4)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C5A880] focus-visible:ring-offset-2 focus-visible:ring-offset-[#005430] sm:text-base"
                             >
                                 <span>{currentSlide.buttonText}</span>
 
@@ -309,7 +309,7 @@ export default function HeroSection() {
                     type="button"
                     onClick={prevSlide}
                     aria-label="الشريحة السابقة"
-                    className="absolute right-3 top-1/2 z-20 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-[#C5A880]/50 bg-[#FEF8EB]/90 text-[#0B3C2E] shadow-[0_3px_15px_rgba(197,168,128,0.18)] backdrop-blur-sm transition-colors duration-300 hover:border-[#C5A880] hover:bg-[#0B3C2E] hover:text-[#C5A880] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C5A880] motion-reduce:transition-none sm:right-8 sm:h-12 sm:w-12"
+                    className="absolute right-3 top-1/2 z-20 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-[#C5A880]/50 bg-[#FEF8EB]/90 text-[#005430] shadow-[0_3px_15px_rgba(197,168,128,0.18)] backdrop-blur-sm transition-colors duration-300 hover:border-[#C5A880] hover:bg-[#005430] hover:text-[#C5A880] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C5A880] motion-reduce:transition-none sm:right-8 sm:h-12 sm:w-12"
                 >
                     <ChevronRight
                         aria-hidden="true"
@@ -321,7 +321,7 @@ export default function HeroSection() {
                     type="button"
                     onClick={nextSlide}
                     aria-label="الشريحة التالية"
-                    className="absolute left-3 top-1/2 z-20 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-[#C5A880]/50 bg-[#FEF8EB]/90 text-[#0B3C2E] shadow-[0_3px_15px_rgba(197,168,128,0.18)] backdrop-blur-sm transition-colors duration-300 hover:border-[#C5A880] hover:bg-[#0B3C2E] hover:text-[#C5A880] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C5A880] motion-reduce:transition-none sm:left-8 sm:h-12 sm:w-12"
+                    className="absolute left-3 top-1/2 z-20 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-[#C5A880]/50 bg-[#FEF8EB]/90 text-[#005430] shadow-[0_3px_15px_rgba(197,168,128,0.18)] backdrop-blur-sm transition-colors duration-300 hover:border-[#C5A880] hover:bg-[#005430] hover:text-[#C5A880] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C5A880] motion-reduce:transition-none sm:left-8 sm:h-12 sm:w-12"
                 >
                     <ChevronLeft
                         aria-hidden="true"

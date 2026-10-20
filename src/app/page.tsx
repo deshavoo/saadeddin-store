@@ -4,6 +4,10 @@ import ProductsSection from "@/components/ProductsSection";
 import OccasionsSection from "@/components/Occasionssection";
 import { db } from "@/lib/db";
 import { auth } from "@/auth";
+import AboutSection from "@/components/Aboutsection";
+import OccasionPickerSection from "@/components/Occasionpickersection";
+import CorporateGiftsSection from "@/components/Corporategiftssection";
+import CustomCakeSection from "@/components/Customcakesection";
 
 export default async function Home() {
   const session = await auth();
@@ -32,6 +36,11 @@ export default async function Home() {
       <FeaturesBar />
       <ProductsSection products={products} initialWishlist={initialWishlist} />
       <OccasionsSection />
+      <OccasionPickerSection />
+      <CorporateGiftsSection />
+      <CustomCakeSection />
+      <AboutSection />
+
     </>
   );
 }
